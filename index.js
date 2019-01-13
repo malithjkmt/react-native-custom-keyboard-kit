@@ -59,13 +59,11 @@ export class CustomTextInput extends Component {
 
   componentDidMount() {
     install(findNodeHandle(this.input), this.props.customKeyboardType);
-    onDismiss = this.props.onDismiss;
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.customKeyboardType !== this.props.customKeyboardType) {
       install(findNodeHandle(this.input), newProps.customKeyboardType);
-      onDismiss = this.props.onDismiss;
     }
   }
 
@@ -75,6 +73,7 @@ export class CustomTextInput extends Component {
 
   render() {
     const { customKeyboardType, ...others } = this.props;
+    onDismiss = this.props.onDismiss
     return (
       <View>
         <TextInput {...others} ref={this.onRef} />
