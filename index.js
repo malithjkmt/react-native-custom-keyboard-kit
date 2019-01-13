@@ -30,6 +30,7 @@ export {
 };
 
 const keyboardTypeRegistry = {};
+let onDismiss = () => { }
 
 export function register(type, factory) {
   keyboardTypeRegistry[type] = factory;
@@ -44,7 +45,7 @@ class CustomKeyboardKitContainer extends Component {
       return null;
     }
     const Comp = factory();
-    return <Comp tag={tag} />;
+    return <Comp tag={tag} onDismiss={onDismiss}/>;
   }
 }
 
@@ -58,11 +59,13 @@ export class CustomTextInput extends Component {
 
   componentDidMount() {
     install(findNodeHandle(this.input), this.props.customKeyboardType);
+    onDismiss = this.props.onDismiss;
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.customKeyboardType !== this.props.customKeyboardType) {
       install(findNodeHandle(this.input), newProps.customKeyboardType);
+      onDismiss = this.props.onDismiss;
     }
   }
 
