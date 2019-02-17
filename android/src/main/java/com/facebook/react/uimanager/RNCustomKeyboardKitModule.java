@@ -132,7 +132,7 @@ public class RNCustomKeyboardKitModule extends ReactContextBaseJavaModule {
   private View createCustomKeyboardKit(Activity activity, int tag, String type) {
     RelativeLayout layout = new RelativeLayout(activity);
     rootView = new ReactRootView(this.getReactApplicationContext());
-    rootView.setBackgroundColor(Color.WHITE);
+    rootView.setBackgroundColor(Color.BLACK);
 
     Bundle bundle = new Bundle();
     bundle.putInt("tag", tag);
